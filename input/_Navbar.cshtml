@@ -1,9 +1,10 @@
 @{
     List<Tuple<string, string>> pages = new List<Tuple<string, string>>
     {
+        Tuple.Create("<i class=\"fa fa-file-text-o\"></i> Resume", Context.GetLink("resume")),
+        Tuple.Create("<i class=\"fa fa-paper-plane-o\"></i> Contact", Context.GetLink("contact")),
         Tuple.Create("<img src=\"assets/icons/blogger-b-brands.svg\" class=\"filter-white\" alt=\"blogger-logo\" height=\"14\" width=\"14\" /> Blog", "https://blog.zac.direct/"),
-        Tuple.Create("<i class=\"fa fa-github\"></i> Code", "https://github.com/zacdirect/"),
-        Tuple.Create("<i class=\"fa fa-paper-plane-o\"></i> Contact", "mailto:cook@zac.direct")
+        Tuple.Create("<i class=\"fa fa-github\"></i> Code", "https://github.com/zacdirect/")
     };
     foreach(Tuple<string, string> pageTuple in pages)
     {
