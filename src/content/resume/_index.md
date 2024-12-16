@@ -1,24 +1,19 @@
-Title: Resume
 ---
-<img class="img-rounded img-right" src="/assets/img/headshot-192.png" alt="Headshot" title="Headshot">
+title: Resume
+---
+![Head shot](headshot-192.png "Head shot")
 
 ## Profile {#profile}
-<p>
 Highly creative problem solver that has adapted to a rapidly changing field for over 15 years.  Consistently innovating to new technology across multiple industries for small, medium, and large organizations. Experience directing in-house and outsourced technical teams to deliver results with challenging budgets and timelines.  Authors operational procedures and has experience managing operational teams consisting of up to 25 direct reports
-</p>
-<div class="clearfix"></div>
 
 ## Core Competencies {#corecompetencies}
-<?# Table Class=table HeaderRows=1 ?>
-<?*
-Hands-on Leadership Executive
-"NET Framework & .NET Core" "Career Development" "KPI Authoring"
-"RESTful Web Services" "Team Building" "ISO Compliance"
-"Azure Architecture" "AGILE Methodology" "Vendor Management"
-"Angular 2-9" "Technology Visionary" "Customer Relations"
-"Database Administration" "Partner Management" "Stakeholder Engagement"
-?>
-<?#/ Table ?>
+
+| Hands-on                      | Leadership           | Executive              |
+| ----------------------------- | :------------------: | ---------------------: |
+| NET Framework & .NET Core     | Career Development   | KPI Authoring          |
+| RESTful Web Services          | Team Building        | ISO Compliance         |
+| Azure Architecture            | AGILE Methodology    | Vendor Management      |
+| Database Administration       | APartner Management  | Stakeholder Engagement |
 
 ## Professional Experience {#experience}
 ### Automated Business Designs
