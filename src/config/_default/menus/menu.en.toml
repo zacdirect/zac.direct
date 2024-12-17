@@ -1,0 +1,44 @@
+[[main]]
+  name = "Home"
+  url = ""
+  weight = -110
+
+[[main]]
+  name = "Resume"
+  url = "resume/"
+  weight = -109
+
+[[main]]
+  name = "Contact"
+  url = "contact/"
+  weight = -108
+
+[[main]]
+  name = "Blog"
+  url = "post/rich-content/"
+  weight = -107
+
+[[main]]
+  name = "About"
+  url = "about/"
+  weight = -106
+
+# social menu links
+
+[[social]]
+  name = "github"
+  type = "social"
+  weight = 1
+  url = "https://github.com/zacdirect"
+[[social]]
+  name = "bluesky"
+  weight = 2
+  url = "https://bsky.app/profile/zac.direct"
+[[social]]
+  name = "linkedin"
+  weight = 3
+  url = "https://www.linkedin.com/in/zacc/"
+[[social]]
+  name = "rss"
+  weight = 4
+  url = "index.xml"

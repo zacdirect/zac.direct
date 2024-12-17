@@ -1,3 +1,18 @@
-baseURL = 'https://zac.direct/'
-languageCode = 'en-us'
-title = 'Zachary Cook'
+baseurl = "https://zac.direct/"  # Include trailing slash
+# canonifyurls = true
+
+theme = "hugo-clarity"
+disqusShortname = ""
+
+DefaultContentLanguage = "en"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[pagination]
+  pagerSize = 10

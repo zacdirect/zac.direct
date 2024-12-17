@@ -1,7 +1,9 @@
 ---
 title: Resume
+showDate: false
+showShare: false
+showReadtime: false
 ---
-![Head shot](headshot-192.png "Head shot")
 
 ## Profile {#profile}
 Highly creative problem solver that has adapted to a rapidly changing field for over 15 years.  Consistently innovating to new technology across multiple industries for small, medium, and large organizations. Experience directing in-house and outsourced technical teams to deliver results with challenging budgets and timelines.  Authors operational procedures and has experience managing operational teams consisting of up to 25 direct reports
