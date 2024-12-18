@@ -1,4 +1,4 @@
-baseurl = "https://zac.direct/"  # Include trailing slash
+baseurl = "https://www.zac.direct/"  # Include trailing slash
 # canonifyurls = true
 
 theme = "hugo-clarity"
