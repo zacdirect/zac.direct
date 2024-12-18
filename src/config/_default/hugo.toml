@@ -1,0 +1,18 @@
+baseurl = "https://www.zac.direct/"  # Include trailing slash
+# canonifyurls = true
+
+theme = "hugo-clarity"
+disqusShortname = ""
+
+DefaultContentLanguage = "en"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[pagination]
+  pagerSize = 10

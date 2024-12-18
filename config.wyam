@@ -1,8 +1,0 @@
-#recipe Docs
-
-// Customize your settings and add new ones here
-Settings[Keys.Host] = "zac.direct";
-Settings[DocsKeys.Title] = "Zachary Cook";
-Settings[Keys.LinksUseHttps] = true;
-
-// Add any pipeline customizations here
