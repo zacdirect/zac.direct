@@ -15,7 +15,7 @@
 
 [[main]]
   name = "Blog"
-  url = "post/rich-content/"
+  url = "post/"
   weight = -107
 
 [[main]]
