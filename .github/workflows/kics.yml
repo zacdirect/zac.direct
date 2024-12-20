@@ -1,0 +1,25 @@
+name: KICS
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Security Scan IaC
+      uses: checkmarx/kics-github-action@v2.1.3
+      with:
+        path: infra
+        token: ${{ secrets.GITHUB_TOKEN }}
+        output_path: myResults/
+        ignore_on_exit: results
+        enable_comments: true
+    - name: Display IaC Scan Results
+      run: |
+        cat kics/results.json

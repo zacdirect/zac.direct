@@ -1,0 +1,15 @@
+name: Pulumi
+on:
+  - push
+  - pull_request
+
+jobs:
+  up:
+    name: Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pulumi/actions@v6
+        with:
+          command: preview
+          stack-name: zac.direct/prod
