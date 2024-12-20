@@ -1,0 +1,10 @@
+name: zac.direct
+description: Provisions infra for zac.direct static website
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+    nodeargs: --max-old-space-size=4096
+config:
+  azure-native:location: CentralUS
+  zac.direct:appName: zacdirect
