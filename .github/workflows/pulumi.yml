@@ -21,4 +21,4 @@ jobs:
       - uses: pulumi/actions@v6
         with:
           command: preview
-          stack-name: zac.direct/prod
+          stack-name: zacdirect/prod
