@@ -1,0 +1,122 @@
+name: Build and Publish Site
+
+on:
+  - push
+  - pull_request
+
+env:
+  PULUMI_STACK: zacdirect/prod
+  PULUMI_ORG: zacdirect
+  PULUMI_USER: user:zacdirect
+  PULUMI_AZURE_ESC_ENVIRONMENT: zacdirect/core-infrastructure/prod
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Security Scan IaC
+      uses: checkmarx/kics-github-action@v2.1.3
+      with:
+        path: infra
+        token: ${{ secrets.GITHUB_TOKEN }}
+        output_path: kics/
+        ignore_on_exit: results
+        enable_comments: true
+
+    - name: Secret Scanning
+      uses: trufflesecurity/trufflehog@main
+      with:
+        extra_args: --results=verified,unknown
+
+    - name: Display IaC Scan Results
+      run: |
+        cat kics/results.json
+
+  infra:
+    name: Preview
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./infra
+    outputs:
+      storageAccountName: ${{ steps.up.outputs.storageAccountName }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pulumi/auth-actions@v1
+        with:
+          organization: ${{ env.PULUMI_ORG }}
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: ${{ env.PULUMI_USER }}
+          token-expiration: 600
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - uses: pulumi/actions@v6
+        with:
+          command: preview
+          stack-name: ${{ env.PULUMI_STACK }}
+          work-dir: ./infra
+
+      - name: Up
+        id: up
+        uses: pulumi/actions@v6
+        if: github.ref_name == github.event.repository.default_branch
+        with:
+          command: preview
+          stack-name: ${{ env.PULUMI_STACK }}
+          work-dir: ./infra
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [ test, infra ]
+    defaults:
+      run:
+        working-directory: ./src
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.140.0'
+          extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - uses: pulumi/auth-actions@v1
+        if: github.ref_name == github.event.repository.default_branch
+        with:
+          organization: ${{ env.PULUMI_ORG }}
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: ${{ env.PULUMI_USER }}
+          token-expiration: 60
+
+      - run: pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }}
+
+      - name: Deploy
+        uses: azure/CLI@v1
+        env:
+          STORAGE_ACCOUNT_NAME: ${{ needs.infra.outputs.storageAccountName }}
+        with:
+          inlineScript: |
+            az storage blob upload-batch --account-name $STORAGE_ACCOUNT_NAME '$web' -s $GITHUB_WORKSPACE/src/public

@@ -53,4 +53,5 @@ new synced_folder.AzureBlobFolder(`${prefix}-website-content`, {
 */
 
 // Export the URLs and hostnames of the storage account and CDN.
-export const originURL = account.primaryEndpoints.web;
+export const storageAccountName = account.name;
+export const originUrl = account.primaryEndpoints.web;
