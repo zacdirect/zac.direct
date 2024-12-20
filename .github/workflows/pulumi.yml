@@ -18,6 +18,9 @@ jobs:
           organization: zacdirect
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: user:zacdirect
+      - uses: pulumi/actions@v6 #install
+        with:
+          work-dir: ./infra
       - uses: pulumi/actions@v6
         with:
           command: preview
