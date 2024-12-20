@@ -68,7 +68,7 @@ jobs:
         uses: pulumi/actions@v6
         if: github.ref_name == github.event.repository.default_branch
         with:
-          command: preview
+          command: up
           stack-name: ${{ env.PULUMI_STACK }}
           work-dir: ./infra
 
@@ -106,8 +106,12 @@ jobs:
           token-expiration: 60
 
       - name: Azure Auth
-        run: pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }}
         if: github.ref_name == github.event.repository.default_branch
+        run: > 
+          pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }} -f shell > envsetup.sh
+          chmod +x envsetup.sh
+          . ./envsetup.sh
+          rm envsetup.sh
 
       - name: Azure Deploy
         uses: azure/CLI@v1
