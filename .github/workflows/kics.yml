@@ -17,7 +17,7 @@ jobs:
       with:
         path: infra
         token: ${{ secrets.GITHUB_TOKEN }}
-        output_path: myResults/
+        output_path: kics/
         ignore_on_exit: results
         enable_comments: true
     - name: Display IaC Scan Results
