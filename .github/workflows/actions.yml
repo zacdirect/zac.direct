@@ -71,6 +71,7 @@ jobs:
         run: hugo --minify
 
       - name: Pulumi Up
+        id: pulumi
         uses: ./.github/actions/pulumi
         if: github.ref_name == 'publishtest'
         with:
