@@ -104,6 +104,7 @@ jobs:
 
       - name: Install for Pulumi
         if: github.ref_name == 'publishtest'
+        working-directory: ./infra
         run: npm ci
 
       - name: Pulumi Up
