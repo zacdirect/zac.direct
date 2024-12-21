@@ -35,33 +35,16 @@ jobs:
     defaults:
       run:
         working-directory: ./infra
-    outputs:
-      storageAccountName: ${{ steps.up.outputs.storageAccountName }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Pulumi Auth
-        uses: pulumi/auth-actions@v1
+      - name: Pulumi Preview
+        uses: ./.github/actions/pulumi.yml
         with:
+          stack-name: ${{ env.PULUMI_STACK }}
           organization: ${{ env.PULUMI_ORG }}
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: ${{ env.PULUMI_USER }}
-          token-expiration: 600
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install
-        run: npm ci
-
-      - name: Preview
-        uses: pulumi/actions@v6
-        with:
           command: preview
-          stack-name: ${{ env.PULUMI_STACK }}
-          work-dir: ./infra
 
   deploy:
     name: Hugo
@@ -87,34 +70,15 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - name: Pulumi Auth
-        uses: pulumi/auth-actions@v1
+      - name: Pulumi Up
+        uses: ./.github/actions/pulumi.yml
         if: github.ref_name == 'publishtest'
         with:
+          stack-name: ${{ env.PULUMI_STACK }}
           organization: ${{ env.PULUMI_ORG }}
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: ${{ env.PULUMI_USER }}
-          token-expiration: 600
-
-      - name: Setup Node for Pulumi
-        uses: actions/setup-node@v4
-        if: github.ref_name == 'publishtest'
-        with:
-          node-version: 20
-
-      - name: Install for Pulumi
-        if: github.ref_name == 'publishtest'
-        working-directory: ./infra
-        run: npm ci
-
-      - name: Pulumi Up
-        id: up
-        uses: pulumi/actions@v6
-        if: github.ref_name == 'publishtest'
-        with:
           command: up
-          stack-name: ${{ env.PULUMI_STACK }}
-          work-dir: ./infra
 
       - name: Azure CLI Login
         uses: azure/login@v2
@@ -128,7 +92,7 @@ jobs:
         uses: azure/CLI@v2
         if: github.ref_name == 'publishtest'
         env:
-          STORAGE_ACCOUNT_NAME: ${{ steps.up.outputs.storageAccountName }}
+          STORAGE_ACCOUNT_NAME: ${{ steps.pulumi.outputs.storageAccountName }}
         with:
           inlineScript: |
             az storage blob sync --account-name $STORAGE_ACCOUNT_NAME --container '$web' --source $GITHUB_WORKSPACE/src/public
