@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Pulumi Preview
-        uses: ./.github/actions/pulumi.yml
+        uses: ./.github/actions/pulumi
         with:
           stack-name: ${{ env.PULUMI_STACK }}
           organization: ${{ env.PULUMI_ORG }}
@@ -71,7 +71,7 @@ jobs:
         run: hugo --minify
 
       - name: Pulumi Up
-        uses: ./.github/actions/pulumi.yml
+        uses: ./.github/actions/pulumi
         if: github.ref_name == 'publishtest'
         with:
           stack-name: ${{ env.PULUMI_STACK }}
