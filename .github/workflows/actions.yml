@@ -40,11 +40,7 @@ jobs:
 
     - name: Azure Auth
       if: github.ref_name == 'publishtest'
-      run: >-
-        (pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }} -f shell) > envsetup.sh \
-          chmod +x envsetup.sh \
-          . ./envsetup.sh \
-          rm envsetup.sh
+      run: (pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }} -f dotenv) >> $GITHUB_ENV
 
   infra:
     name: IaC
