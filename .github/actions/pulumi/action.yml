@@ -37,6 +37,7 @@ runs:
 
     - name: Install for Pulumi
       working-directory: ${{ inputs.work-dir }}
+      shell: bash
       run: npm ci
 
     - name: Pulumi Command
