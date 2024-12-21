@@ -109,9 +109,9 @@ jobs:
         if: github.ref_name == 'publishtest'
         run: |
           (pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }} -f shell) > envsetup.sh \
-          chmod +x envsetup.sh \
-          . ./envsetup.sh \
-          rm envsetup.sh
+            chmod +x envsetup.sh \
+            . ./envsetup.sh \
+            rm envsetup.sh
 
       - name: Azure Deploy
         uses: azure/CLI@v1
