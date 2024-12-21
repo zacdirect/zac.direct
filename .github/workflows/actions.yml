@@ -116,4 +116,4 @@ jobs:
           STORAGE_ACCOUNT_NAME: ${{ needs.infra.outputs.storageAccountName }}
         with:
           inlineScript: |
-            az storage blob upload-batch --account-name $STORAGE_ACCOUNT_NAME '$web' -s $GITHUB_WORKSPACE/src/public
+            az storage blob sync --account-name $STORAGE_ACCOUNT_NAME --container '$web' --source $GITHUB_WORKSPACE/src/public
