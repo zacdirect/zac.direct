@@ -97,6 +97,14 @@ jobs:
         run: hugo --minify
 
       - name: Pulumi Auth
+        uses: pulumi/auth-actions@v1
+        with:
+          organization: ${{ env.PULUMI_ORG }}
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: ${{ env.PULUMI_USER }}
+          token-expiration: 60
+
+      - name: Pulumi ESC
         if: github.ref_name == 'publishtest'
         run: (pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }} -f dotenv) >> $GITHUB_ENV
 
