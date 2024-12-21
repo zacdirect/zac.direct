@@ -28,19 +28,6 @@ jobs:
       uses: trufflesecurity/trufflehog@main
       with:
         extra_args: --results=verified,unknown
-    
-    - name: Pulumi Auth
-      uses: pulumi/auth-actions@v1
-      if: github.ref_name == 'publishtest'
-      with:
-        organization: ${{ env.PULUMI_ORG }}
-        requested-token-type: urn:pulumi:token-type:access_token:personal
-        scope: ${{ env.PULUMI_USER }}
-        token-expiration: 60
-
-    - name: Azure Auth
-      if: github.ref_name == 'publishtest'
-      run: (pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }} -f dotenv) >> $GITHUB_ENV
 
   infra:
     name: IaC
@@ -108,6 +95,19 @@ jobs:
 
       - name: Build
         run: hugo --minify
+
+      - name: Pulumi Auth
+        uses: pulumi/auth-actions@v1
+        if: github.ref_name == 'publishtest'
+        with:
+          organization: ${{ env.PULUMI_ORG }}
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: ${{ env.PULUMI_USER }}
+          token-expiration: 60
+  
+      - name: Azure Auth
+        if: github.ref_name == 'publishtest'
+        run: (pulumi env open ${{ env.PULUMI_AZURE_ESC_ENVIRONMENT }} -f dotenv) >> $GITHUB_ENV
 
       - name: Azure Deploy
         uses: azure/CLI@v1
