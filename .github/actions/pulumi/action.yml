@@ -1,25 +1,26 @@
 name: Pulumi Steps
 
+inputs:
+  command:
+    type: string
+    required: true
+  organization:
+    type: string
+    required: true
+  requested-token-type:
+    type: string
+    required: true
+  scope:
+    type: string
+    required: true
+  stack-name:
+    type: string
+  work-dir:
+    type: string
+    default: ./infra
+
 runs:
   using: "composite"
-  inputs:
-    command:
-      type: string
-      required: true
-    organization:
-      type: string
-      required: true
-    requested-token-type:
-      type: string
-      required: true
-    scope:
-      type: string
-      required: true
-    stack-name:
-      type: string
-    work-dir:
-      type: string
-      default: ./infra
   steps:
     - name: Pulumi Auth
       uses: pulumi/auth-actions@v1
@@ -45,4 +46,3 @@ runs:
         command: ${{ inputs.command }}
         stack-name: ${{ inputs.stack-name }}
         work-dir: ${{ inputs.work-dir }}
-
