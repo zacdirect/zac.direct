@@ -128,7 +128,7 @@ jobs:
         uses: azure/CLI@v2
         if: github.ref_name == 'publishtest'
         env:
-          STORAGE_ACCOUNT_NAME: ${{ needs.infra.outputs.storageAccountName }}
+          STORAGE_ACCOUNT_NAME: ${{ steps.up.outputs.storageAccountName }}
         with:
           inlineScript: |
             az storage blob sync --account-name $STORAGE_ACCOUNT_NAME --container '$web' --source $GITHUB_WORKSPACE/src/public
