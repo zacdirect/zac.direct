@@ -10,7 +10,6 @@ env:
   PULUMI_USER: user:zacdirect
   PULUMI_TOKEN: urn:pulumi:token-type:access_token:personal
   PULUMI_AZURE_ESC_ENVIRONMENT: zacdirect/core-infrastructure/prod
-  BUILD_DESTINATION: ./public
 
 permissions:
   id-token: write
@@ -40,11 +39,14 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload
+        uses: actions/upload-artifact@v4
         with:
           name: Build
-          path: ${{ env.BUILD_DESTINATION }}
+          path: ./src/public
           retention-days: 1
+          overwrite: true
+          if-no-files-found: error
 
   test:
     name: Test
@@ -59,7 +61,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         name: Build
-        path: ./src/${{ env.BUILD_DESTINATION }}
+        path: ./src/public
 
     - name: Secret Scanning
       uses: trufflesecurity/trufflehog@main
@@ -117,7 +119,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: Build
-          path: ${{ env.BUILD_DESTINATION }}
+          path: ./src/public
 
       - name: Azure Deploy
         uses: azure/CLI@v2
