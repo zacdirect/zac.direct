@@ -10,7 +10,7 @@ env:
   PULUMI_USER: user:zacdirect
   PULUMI_TOKEN: urn:pulumi:token-type:access_token:personal
   PULUMI_AZURE_ESC_ENVIRONMENT: zacdirect/core-infrastructure/prod
-  BUILD_DESTINATION: $GITHUB_WORKSPACE/src/public
+  BUILD_DESTINATION: ./public
 
 permissions:
   id-token: write
@@ -59,7 +59,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         name: Build
-        path: ${{ env.BUILD_DESTINATION }}
+        path: ./src/${{ env.BUILD_DESTINATION }}
 
     - name: Secret Scanning
       uses: trufflesecurity/trufflehog@main
