@@ -87,6 +87,25 @@ jobs:
       - name: Build
         run: hugo --minify
 
+      - name: Pulumi Auth
+        uses: pulumi/auth-actions@v1
+        if: github.ref_name == 'publishtest'
+        with:
+          organization: ${{ env.PULUMI_ORG }}
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: ${{ env.PULUMI_USER }}
+          token-expiration: 600
+
+      - name: Setup Node for Pulumi
+        uses: actions/setup-node@v4
+        if: github.ref_name == 'publishtest'
+        with:
+          node-version: 20
+
+      - name: Install for Pulumi
+        if: github.ref_name == 'publishtest'
+        run: npm ci
+
       - name: Pulumi Up
         id: up
         uses: pulumi/actions@v6
