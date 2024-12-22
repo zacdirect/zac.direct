@@ -26,15 +26,18 @@ const account = pulumi.all([fetchCloudflareIps(), fetchCurrentIp()])
 
     return new azure_native.storage.StorageAccount(`${appName}storage`, {
         resourceGroupName: resourceGroup.name,
-        kind: "StorageV2",
+        kind: azure_native.storage.Kind.StorageV2,
         sku: {
-            name: "Standard_LRS",
+            name: azure_native.storage.SkuName.Standard_LRS,
         },
         enableHttpsTrafficOnly: true,
-        minimumTlsVersion: "TLS1_2",
+        allowBlobPublicAccess: false,
+        allowCrossTenantReplication: false,
+        allowedCopyScope: azure_native.storage.AllowedCopyScope.AAD,
+        minimumTlsVersion: azure_native.storage.MinimumTlsVersion.TLS1_2,
         networkRuleSet: {
-            bypass: "AzureServices",
-            defaultAction: "Deny",
+            bypass: azure_native.storage.Bypass.AzureServices,
+            defaultAction: azure_native.storage.DefaultAction.Deny,
             ipRules: allowedCidrs.map(ip => ({ iPAddressOrRange: ip })),
         },
     });
@@ -45,7 +48,7 @@ const account = pulumi.all([fetchCloudflareIps(), fetchCurrentIp()])
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Configure the storage account as a website.
-const website = new azure_native.storage.StorageAccountStaticWebsite(`${prefix}-website`, {
+new azure_native.storage.StorageAccountStaticWebsite(`${prefix}-website`, {
     resourceGroupName: resourceGroup.name,
     accountName: account.name,
     indexDocument: indexDocument,
@@ -56,8 +59,10 @@ const website = new azure_native.storage.StorageAccountStaticWebsite(`${prefix}-
 //This has the side effect of adding every file into state, so for a static site like this that would 
 // 1. Exceed 200 free IaC resources quickly
 // 2. Create a lot of metadata for little benefit.  A fair pattern for other use cases though.
-/* So with that in mind we'll just use GitHub's CI/CD for this.  Powered by the same ESC OIDC dynamic login.
-
+// 
+// So with that in mind we'll just use GitHub's CI/CD for this.  
+// The OIDC between Azure and GitLab that enables that is setup as part of the core-infrastructure repo.
+/*
 new synced_folder.AzureBlobFolder(`${prefix}-website-content`, {
     path: path,
     resourceGroupName: resourceGroup.name,
