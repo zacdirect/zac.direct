@@ -15,7 +15,7 @@ showShare = true # Uncomment to not show share buttons on each post. Also availa
 ga_analytics = ""
 
 # Google tag manager
-google_tag_manager_id = "G-111YJECC09"
+google_tag_manager_id = ""
 
 # Baidu analytics Id
 # baidu_analytics = "XXXXXXXX"
