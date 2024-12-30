@@ -4,9 +4,8 @@ date: 2012-06-05T20:17:00.000-05:00
 draft: false
 url: /2012/06/net-objectdatasource-and-me.html
 tags: 
-- DotNet
-- Development
-- ObjectDataSource
+- dotnet
+- development
 ---
 
 I've recently decided that I'm a .NET developer. Then I got some people to pay me to be a .NET developer. All in all I'm happier writing code than I was fixing servers and networks but sometimes programming just drives me nuts. Today's rant is about the ObjectDataSource in .NET... and really datasource objects in general. I've recently started growing an application from typical 'GridView with SQLDataSource' to a big boy app with domain models, service contracts, and all kinds of other jazz I never worried about (or understood) when I was writing small time side projects for anybody interested in them. After happily generating loads and loads of back-end code to let the application be dll driven and capable of living inside services, web services, desktop apps, etc I go and return to some actual interface work! The Setup:  

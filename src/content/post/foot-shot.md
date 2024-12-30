@@ -4,9 +4,8 @@ date: 2012-06-26T00:28:00.002-05:00
 draft: false
 url: /2012/06/foot-shot.html
 tags: 
-- Development
-- Notes To Self
-- Databases
+- development
+- databases
 ---
 
 Things never to do again:  

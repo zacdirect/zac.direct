@@ -4,6 +4,8 @@ date: 2020-03-22T13:58:00.002-05:00
 draft: false
 url: /2020/03/covid-19.html
 thumbnail: /images/post/outbreak-coronavirus-world-1024x506px.jpg
+tags:
+- covid
 ---
 
 About a month ago I asked a friend in the manufacturing space "is any of this virus stuff in China affecting business?"  At this moment there are 30,347 confirmed cases in the US and the state of Illinois has effectively shut down.  This is certainly an interesting time, and a reminder of just how small the world can be.
