@@ -2,7 +2,7 @@
 title: "COVID Retrospective"
 date: 2024-12-29T20:41:25-06:00
 description: "A recap of what the heck has happened the last four years."
-featured: true
+featured: false
 draft: false
 toc: false
 usePageBundles: false
