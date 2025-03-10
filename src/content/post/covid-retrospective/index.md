@@ -32,7 +32,7 @@ Rose, Thorn, Bud is a general way to perform retros and is also used for mental 
 * Up until the pandemic I was grinding hard on the work part of the work-life balance.  When I wasn't committing serious hours to my current employer I was picking up side jobs.  Seeing so much loss and isolating with those I care about most has forever changed my desired work-life balance.
 * Opportunities for remote work are here to stay.  Various return-to-office policies are working their way back in, but if you're an engineer that wants to find work in a different state that is much easier than in 2019, and less likely to change.
 * Vaccine research has had permanent gains.  [mRNA](https://www.nature.com/articles/s41573-024-01042-y) and [Walter Reed's SpFN](https://www.defenseone.com/technology/2021/12/us-army-creates-single-vaccine-effective-against-all-covid-sars-variants/360089/) offer opportunities for rapid development and broad coverage that would not be as far along without the global attention COVID-19 earned.
-* While I never got into baking bread I my wife took on houseplants and I took on fish keeping as bored-to-tears-at-home hobbies.  Both are still going strong.
+* While I never got into baking bread... my wife took on houseplants and I took on fish keeping as bored-to-tears-at-home hobbies.  Both are still going strong.
 
 {{< image src="toilet-paper-death-threats.png" height="600" position="float-right" alt="A post for slightly used toilet paper that I took down after getting death threats.">}}
 
