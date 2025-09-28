@@ -1,6 +1,6 @@
 
 ## About This Site
-* [Zac.Direct](https://www.zac.direct) is registered via [Squarespace Domains](https://domains.squarespace.com/google-domains)
+* [Zac.Direct](https://www.zac.direct) is registered via [Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)
 * Site content is generated via [Hugo](https://gohugo.io/)
 * Infrastructure is provisioned via [Pulumi](https://pulumi.com/)
 * Site content is hosted directly on [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/)

@@ -1,0 +1,13 @@
+{{- if .Site.Params.mermaid.enable }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@{{ .Site.Params.mermaid.version | default "10.6.1" }}/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    {{- if .Site.Params.enforceDarkMode }}
+    theme: 'dark'
+    {{- else }}
+    theme: 'default'
+    {{- end }}
+  });
+</script>
+{{- end }}

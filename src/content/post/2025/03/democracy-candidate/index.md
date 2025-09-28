@@ -2,7 +2,7 @@
 title: "Democracy Candidate"
 date: 2025-03-09T23:02:15-05:00
 description: "Democracy Candidate is an open source project intended to help platform anybody that isn't a jerk."
-featured: true
+featured: false
 draft: false
 toc: false
 usePageBundles: false

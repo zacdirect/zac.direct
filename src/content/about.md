@@ -16,10 +16,10 @@ Throughout [my career](/resume), I've moved across a spectrum of technical speci
 These days I still favor small companies and small teams, and I spend much more time managing teams and solving business problems instead of technical ones.  I believe I have the same level of passion for solving those problems, but it has reopened software development as something I enjoy doing as a hobby.  What they never told me back when I picked "computers" as a career path, is that one side effect of doing what you love is that you rarely want to do it for the love of it anymore.  That's fundamentally where the interest in developing this site, a portfolio, and contributing to the open-source world is coming from.  The timing of regaining those interests is serendipitous as my daughter is about the age I was when my interest first started.  Together we have developed some really interesting [Botley](https://www.learningresources.com/botleyr-the-coding-robot) tracks.
 
 ## About This Site
-* [Zac.Direct](/) is registered via [Squarespace Domains](https://domains.squarespace.com/google-domains)
+* [Zac.Direct](/) is registered via [Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)
 * Site content is generated via [Hugo](https://gohugo.io/)
   * The very little source code required to generate the site is [hosted here](https://github.com/zacdirect/zac.direct) on [my GitHub](https://github.com/zacdirect).
 * Site content is hosted directly on [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/)
 * Content is load balanced and provided free SSL certificate via the [Azure Content Delivery Network](https://azure.microsoft.com/en-us/services/cdn/)
-* The Azure hosting bill for this site is estimated to run **$2.06 annually**.  If you're not using services like these, you should be!
 * The contact form, bot protection, and hosting complexities are all free from [Formspree](https://formspree.io/)
+* The Azure hosting bill for this site is estimated to run **$2.06 annually**.  If you're not using services like these, you should be!
